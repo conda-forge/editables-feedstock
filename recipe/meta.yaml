@@ -1,5 +1,5 @@
 {% set name = "editables" %}
-{% set version = "0.3" %}
+{% set version = "0.4" %}
 
 package:
   name: {{ name|lower }}
@@ -7,19 +7,20 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/editables-{{ version }}.tar.gz
-  sha256: 167524e377358ed1f1374e61c268f0d7a4bf7dbd046c656f7b410cde16161b1a
+  sha256: dc322c42e7ccaf19600874035a4573898d88aadd07e177c239298135b75da772
 
 build:
   noarch: python
-  script: {{ PYTHON }} -m pip install . -vv
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   number: 0
 
 requirements:
   host:
+    - python >=3.7
+    - flit-core >=3.3
     - pip
-    - python >=3.5
   run:
-    - python >=3.5
+    - python >=3.7
 
 test:
   imports:
